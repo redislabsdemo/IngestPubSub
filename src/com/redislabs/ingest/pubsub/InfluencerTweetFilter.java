@@ -1,8 +1,5 @@
 package com.redislabs.ingest.pubsub;
 
-import java.util.Map;
-import java.util.Set;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
