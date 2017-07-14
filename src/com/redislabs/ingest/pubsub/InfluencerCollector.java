@@ -60,8 +60,8 @@ public class InfluencerCollector extends Subscriber{
 				map.put("followers_count", Integer.toString(followerCount));
 				map.put("friendCount", Integer.toString(friendCount));
 
-				jedis.zadd("Influencers", followerCount, screenName);
-				jedis.hmset("Influencer:"+screenName, map);
+				jedis.zadd("influencers", followerCount, screenName);
+				jedis.hmset("influencer:"+screenName, map);
 				//System.out.println(userObject.get("screen_name").getAsString()+"| Followers:"+userObject.get("followers_count").getAsString());			
 			}
 			

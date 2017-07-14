@@ -62,19 +62,19 @@ public class IngestPubSub
 		pubnub.subscribe().channels(Arrays.asList(CHANNEL_TWITTER)).execute();
 		
 		// All incoming data are published to this channel
-		publisher = new Publisher("AllData");
+		publisher = new Publisher("alldata");
 		
 		// EnglishTweetFilter subscribes to AllData and publishes to EnglishTweets 
-		englishFilter = new EnglishTweetFilter("English Filter","AllData", "EnglishTweets");
+		englishFilter = new EnglishTweetFilter("English Filter","alldata", "englishtweets");
 		
 		// InfluencerTweetFilter subscribes to AllData and publishes to InfluencerTweets
-		influencerFilter = new InfluencerTweetFilter("Influencer Filter", "AllData", "InfluencerTweets");
+		influencerFilter = new InfluencerTweetFilter("Influencer Filter", "alldata", "influencertweets");
 		
 		// HashTagCollector subscribes to EnglishTweets
-		hashtagCollector = new HashTagCollector("Hashtag Collector", "EnglishTweets");
+		hashtagCollector = new HashTagCollector("Hashtag Collector", "englishtweets");
 		
 		// InfluencerCollector subscribes to InfluencerTweets
-		influencerCollector = new InfluencerCollector("Influencer Collector", "InfluencerTweets");
+		influencerCollector = new InfluencerCollector("Influencer Collector", "influencertweets");
 		
 		// PubNub event callback
 		SubscribeCallback subscribeCallback = new SubscribeCallback() {
@@ -95,6 +95,7 @@ public class IngestPubSub
 		    @Override
 		    public void message(PubNub pubnub, PNMessageResult message) {
 		    	try{
+		    		System.out.println(message.getMessage().getAsJsonObject().toString());
 			    	publisher.publish(message.getMessage().getAsJsonObject().toString());		    		
 		    	}catch(Exception e){
 		    		e.printStackTrace();

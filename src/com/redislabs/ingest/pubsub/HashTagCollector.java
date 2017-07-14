@@ -51,7 +51,7 @@ public class HashTagCollector extends Subscriber{
 			while(mat.find()){
 				
 				// Update the Sorted Set with ZINCRBY command
-				jedis.zincrby("HashtagSet", 1, mat.group(1));
+				jedis.zincrby("hashtagset", 1, mat.group(1));
 			}
 		}
 	}
